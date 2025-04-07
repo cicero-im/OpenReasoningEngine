@@ -22,6 +22,8 @@ from e2b_code_interpreter import Sandbox
 from serpapi import GoogleSearch
 from dotenv import load_dotenv
 from urllib.parse import quote
+from security import safe_requests
+
 load_dotenv()
 
 serpapi_api_key = os.environ.get("SERPAPI_API_KEY")
@@ -225,7 +227,7 @@ def get_webpage_content(url: str, jina_api_key: str = None) -> str:
             'Authorization': f'Bearer {jina_api_key}'
         }
         
-        response = requests.get(jina_url, headers=headers, timeout=10)
+        response = safe_requests.get(jina_url, headers=headers, timeout=10)
         
         if response.status_code == 200:
             return response.text
