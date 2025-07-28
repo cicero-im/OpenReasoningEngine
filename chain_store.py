@@ -25,8 +25,8 @@ def get_embedding(text: str, cohere_api_key: str, input_type: str = "search_docu
                 "model": "embed-english-v3.0",
                 "input_type": input_type,
                 "embedding_type": "float"
-            }
-        )
+            }, 
+        timeout=60)
         response.raise_for_status()
         return response.json()["embeddings"][0]
     except Exception as e:

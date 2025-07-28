@@ -31,7 +31,7 @@ def call_reason_api(
         payload["previous_chains"] = previous_chains
 
     try:
-        response = requests.post(url, json=payload)
+        response = requests.post(url, json=payload, timeout=60)
         response.raise_for_status()
         data = response.json()
         return data["response"], data["reasoning_chain"]
